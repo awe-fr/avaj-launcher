@@ -20,7 +20,6 @@ public class Tower {
 			} catch (WrongTypeException e) {
 				e.printStackTrace();
 			} catch (LandException e) {
-				e.printStackTrace();
 				unregister(observers.get(i));
 			}
 		}

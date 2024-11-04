@@ -13,3 +13,4 @@ run:	all
 clean:
 		find . -name "*.class" -exec $(RM) {} +
 		$(RM) sources.txt
+		$(RM) simulation.txt

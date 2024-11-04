@@ -17,9 +17,12 @@ public class FileParser {
 				checkHairplane(reader, file);
 			}
 			reader.close();
+			sim.lunch();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error : file not found");
 			e.printStackTrace();
+			sim.deleteFile();
+			System.exit(0);
 		}
 
 	}
@@ -28,9 +31,16 @@ public class FileParser {
 		try {
 			String line = reader.nextLine();
 			int time =Integer.parseInt(line);
+			if (time <= 0) {
+				System.err.println("Error : Runtime have to be highter than 0.");
+				System.err.println(line);
+				sim.deleteFile();
+				System.exit(0);
+			}
 			sim.addRuntime(time);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
+			sim.deleteFile();
 			System.exit(0);
 		}
 	}
@@ -46,6 +56,11 @@ public class FileParser {
 				int z =Integer.parseInt(infos[4]);
 				if (z > 100) {
 					z = 100;
+				} else if (z <= 0) {
+					System.err.println("Error : Height axis have to be highter than 0.");
+					System.err.println(line);
+					sim.deleteFile();
+					System.exit(0);
 				}
 				Coordinates coor = new Coordinates(x, y, z);
 				Flyable fly = factory.newAircraft(infos[0], infos[1], coor);
@@ -53,9 +68,11 @@ public class FileParser {
 			}
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
+			sim.deleteFile();
 			System.exit(0);
 		} catch (WrongTypeException e) {
 			e.printStackTrace();
+			sim.deleteFile();
 			System.exit(0);
 		}
 	}
