@@ -8,7 +8,7 @@ all:
 		$(COMPILE)
 
 run:	all
-		$(JAVA) sources.MainApp "./simulation.txt"
+		$(JAVA) sources.MainApp "./scenario.txt"
 
 clean:
 		find . -name "*.class" -exec $(RM) {} +

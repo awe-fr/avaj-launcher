@@ -3,7 +3,7 @@ package sources;
 import java.util.*;
 
 public class Tower {
-	private List<Flyable> observers = Arrays.asList();
+	private List<Flyable> observers = new ArrayList<>();
 
 	public void register(Flyable p_flyable) {
 		observers.add(p_flyable);
